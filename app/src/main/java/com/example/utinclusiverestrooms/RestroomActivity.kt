@@ -32,6 +32,8 @@ class RestroomActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restroom)
+        // try setLifecycleOwner
+        // https://stackoverflow.com/questions/59545195/mutablelivedata-not-updating-in-ui
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -56,10 +58,15 @@ class RestroomActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     viewModel.updateUiState(location)
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        Log.d("RestroomActivity", "In repeatOnLifecycle")
                         viewModel.uiState.collect {
+                            Log.d("RestroomActivity", "In collect")
                             val textView = findViewById<TextView>(R.id.textView).apply {
+                                Log.d("RestroomActivity", "Refreshing text view")
                                 if (viewModel.uiState.value.size > 0) {
-                                    text = viewModel.uiState.value[0].Name
+                                    text = viewModel.uiState.value[0].Name + " " + viewModel.uiState.value[0].Address_Full + "\n" +
+                                            viewModel.uiState.value[1].Name + " " +  viewModel.uiState.value[1].Address_Full + "\n" +
+                                            viewModel.uiState.value[2].Name + " " + viewModel.uiState.value[2].Address_Full
                                 }
                             }
                         }

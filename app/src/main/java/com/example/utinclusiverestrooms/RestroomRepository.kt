@@ -2,9 +2,12 @@ package com.example.utinclusiverestrooms
 
 import android.location.Geocoder
 import android.location.Location
+import android.util.Log
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import javax.inject.Inject
 
@@ -12,15 +15,20 @@ import javax.inject.Inject
 @InstallIn(SingletonComponent::class)
 class RestroomRepository @Inject constructor(
     private val restroomRemoteDataSource: RestroomRemoteDataSource,
-    //private val restroomLocalDataSource: RestroomLocalDataSource
+    private val restroomLocalDataSource: RestroomLocalDataSource
 ) {
     private val restroomsMutex = Mutex()
     private var restrooms: MutableList<Restroom> = mutableListOf<Restroom>()
     private var sorted = false
 
     suspend fun sortRestrooms(currentLocation: Location) {
+        Log.d("RestroomRepository", "Fetching local data")
+        restrooms = restroomLocalDataSource.getRestrooms()
+
         if (restrooms.isEmpty()) {
+            Log.d("RestroomRepository", "Fetching remote data")
             restrooms = restroomRemoteDataSource.getRestrooms()
+            restroomLocalDataSource.update(restrooms)
         }
 
         val gc = Geocoder(MainApplication.applicationContext())
