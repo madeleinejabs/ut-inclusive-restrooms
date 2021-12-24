@@ -11,16 +11,23 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
-import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class RestroomActivity : AppCompatActivity() {
     private val viewModel: RestroomViewModel by viewModels()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val utils: Utils = Utils.create()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,44 +47,85 @@ class RestroomActivity : AppCompatActivity() {
             }
         }
 
+
         fusedLocationClient.getCurrentLocation(
             LocationRequest.PRIORITY_HIGH_ACCURACY,
             CancellationTokenSource().token).addOnSuccessListener {
-                location : Location? ->
+                location: Location? ->
             if (location != null) {
-                Log.d("ChangeActivity",
-                    "Latitude: " + location.latitude.toString())
-                Log.d("ChangeActivity",
-                    "Longitude: " + location.longitude.toString())
-                val textView = findViewById<TextView>(R.id.textView).apply {
-                    text = location.latitude.toString() + ", "  + location.longitude.toString()
-                }
-            }
-        }
+                lifecycleScope.launch {
+                    viewModel.updateUiState(location)
+                    repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        viewModel.uiState.collect {
+                            val textView = findViewById<TextView>(R.id.textView).apply {
+                                if (viewModel.uiState.value.size > 0) {
+                                    text = viewModel.uiState.value[0].Name
+                                }
+                            }
+                        }
 
-        val jsonFileString = utils.getJsonDataFromAsset(this, "restrooms.json")
-        if (jsonFileString != null) {
-            val gson = Gson()
-            val reader = gson.newJsonReader(jsonFileString.reader())
-            reader.beginObject()
-            while (reader.hasNext()) {
-                val name = reader.nextName()
-                if (!name.equals("features")) {
-                    reader.skipValue()
+                    }
                 }
-                else {
-                    reader.beginArray()
+
+                /*
+                 restroomRepository.getRestroom(0)!!.Name + " " +
+                                        restroomRepository.getRestroom(0)!!.distanceTo.toString()+ "m\n" +
+                                        restroomRepository.getRestroom(1)!!.Name + " " +
+                                        restroomRepository.getRestroom(1)!!.distanceTo.toString() + "m\n" +
+                                        restroomRepository.getRestroom(2)!!.Name + " " +
+                                        restroomRepository.getRestroom(2)!!.distanceTo.toString() + "m\n"
+                 */
+
+
+                /*
+                val restrooms = mutableListOf<Restroom>()
+                val jsonFileString = utils.getJsonDataFromAsset(this,"restrooms.json")
+                if (jsonFileString != null) {
+                    val gson = Gson()
+                    val reader = gson.newJsonReader(jsonFileString.reader())
+                    reader.beginObject()
                     while (reader.hasNext()) {
-                        reader.beginObject()
-                        while (reader.hasNext()) {
-                            val name = reader.nextName()
-                            if (name.equals("attributes")) {
+                        val name = reader.nextName()
+                        if (!name.equals("features")) {
+                            reader.skipValue()
+                        }
+                        else {
+                            reader.beginArray()
+                            while (reader.hasNext()) {
                                 reader.beginObject()
                                 while (reader.hasNext()) {
                                     val name = reader.nextName()
-                                    if (name.equals("Name")) {
-                                        val building = reader.nextString()
-                                        Log.d("JsonReader", building)
+                                    if (name.equals("attributes")) {
+                                        reader.beginObject()
+                                        val restroom = Restroom()
+                                        while (reader.hasNext()) {
+                                            val fieldName = reader.nextName()
+                                            if (reader.peek() == JsonToken.NULL) {
+                                                reader.skipValue()
+                                            }
+                                            else {
+                                                when (fieldName) {
+                                                    "OBJECTID" -> restroom.OBJECTID = reader.nextInt()
+                                                    "Name" -> restroom.Name = reader.nextString()
+                                                    "Building_Abbr" -> restroom.Building_Abbr =
+                                                        reader.nextString()
+                                                    "Address_Full" -> restroom.Address_Full =
+                                                        reader.nextString()
+                                                    "Room_Number" -> restroom.Room_Number =
+                                                        reader.nextString()
+                                                    "Number_Of_Rooms" -> restroom.Number_Of_Rooms =
+                                                        reader.nextString()
+                                                    "Bathroom_Type" -> restroom.Bathroom_Type =
+                                                        reader.nextString()
+                                                    "Notes" -> restroom.Notes = reader.nextString()
+                                                    "Status" -> restroom.Status = reader.nextString()
+                                                    "Photo_URL" -> restroom.Photo_URL = reader.nextString()
+                                                    else -> reader.skipValue()
+                                                }
+                                            }
+                                        }
+                                        restrooms.add(restroom)
+                                        reader.endObject()
                                     }
                                     else {
                                         reader.skipValue()
@@ -85,18 +133,39 @@ class RestroomActivity : AppCompatActivity() {
                                 }
                                 reader.endObject()
                             }
-                            else {
-                                reader.skipValue()
-                            }
+                            reader.endArray()
                         }
-                        reader.endObject()
                     }
-                    reader.endArray()
+                    reader.endObject()
                 }
+
+                val gc = Geocoder(this)
+                if (Geocoder.isPresent())
+                {
+                    restrooms.forEach { it ->
+                        if (it.Address_Full != "") {
+                            val restroomLocation = gc.getFromLocationName(it.Address_Full, 1)[0]
+                            var distance = floatArrayOf(-1.0f)
+                            distanceBetween(location.latitude, location.longitude,
+                                restroomLocation.latitude, restroomLocation.longitude, distance)
+                            it.distanceTo = distance[0]
+                        }
+                    }
+
+                    restrooms.sortBy { it.distanceTo }
+
+
+                    restrooms.forEach { it ->
+                        if (it.Address_Full != "" && it.distanceTo > 0.0f) {
+                            Log.d(it.Name, it.distanceTo.toString())
+                            Log.d(it.Name, " ")
+                        }
+                    }
+                */
             }
-            reader.endObject()
         }
     }
+
 
     private val requestPermissionLauncher =
         registerForActivityResult(
