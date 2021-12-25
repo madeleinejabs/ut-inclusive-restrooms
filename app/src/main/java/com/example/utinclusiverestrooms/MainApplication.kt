@@ -3,7 +3,6 @@ package com.example.utinclusiverestrooms
 import android.app.Application
 import android.content.Context
 import dagger.hilt.android.HiltAndroidApp
-import kotlinx.coroutines.MainScope
 
 @HiltAndroidApp
 class MainApplication : Application() {
@@ -18,11 +17,5 @@ class MainApplication : Application() {
         fun applicationContext(): Context {
             return instance!!.applicationContext
         }
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-
-        val context: Context = MainApplication.applicationContext()
     }
 }

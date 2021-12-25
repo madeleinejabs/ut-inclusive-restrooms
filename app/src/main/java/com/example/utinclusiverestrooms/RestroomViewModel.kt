@@ -1,12 +1,9 @@
 package com.example.utinclusiverestrooms
 
 import android.location.Location
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,17 +20,14 @@ class RestroomViewModel @Inject constructor (
     val uiState: StateFlow<List<Restroom>> = _uiState.asStateFlow()
 
 
-    fun updateUiState(location: Location) {
+    fun updateUiState(location: Location, num: Int) {
         viewModelScope.launch {
             restroomRepository.sortRestrooms(location)
-            Log.d("RestroomViewModel", "After sortRestrooms")
             restrooms.clear()
-            for (i in 0..2) {
+            for (i in 0 until num) {
                 restrooms.add(restroomRepository.getRestroom(i)!!)
             }
             _uiState.value = Collections.unmodifiableList(restrooms)
         }
     }
-
-    val testString : String = "This feature requires location permission"
 }

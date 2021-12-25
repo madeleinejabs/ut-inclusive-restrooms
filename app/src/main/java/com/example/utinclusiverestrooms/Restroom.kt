@@ -15,6 +15,6 @@ data class Restroom(@PrimaryKey var OBJECTID: Int = 0,
                     @ColumnInfo(name="Notes") var Notes: String = "",
                     @ColumnInfo(name="Status") var Status: String = "",
                     @ColumnInfo(name="Photo_URL") var Photo_URL: String = "",
-                    @ColumnInfo(name="distanceTo") var distanceTo: Float = Float.MAX_VALUE) {
-
-}
+                    @ColumnInfo(name="distanceTo") var distanceTo: Float = Float.MAX_VALUE,
+                    @ColumnInfo(name="latitude") var latitude: Double = Double.MAX_VALUE,
+                    @ColumnInfo(name="longitude") var longitude: Double = Double.MAX_VALUE)

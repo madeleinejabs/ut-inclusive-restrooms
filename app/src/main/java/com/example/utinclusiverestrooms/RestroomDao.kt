@@ -1,7 +1,6 @@
 package com.example.utinclusiverestrooms
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -15,7 +14,4 @@ interface RestroomDao {
 
     @Insert
     suspend fun insertAll(vararg restrooms: Restroom)
-
-    @Delete
-    suspend fun delete(restroom: Restroom)
 }

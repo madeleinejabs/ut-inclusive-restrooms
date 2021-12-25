@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">UT Inclusive Restrooms</string>
     <string name="find_restroom">Find me a Restroom</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
+    <string name="restroom_info">Name: %1$s, Distance: %2$.2fm</string>
+    <string name="location_denied">This feature requires location permission.</string>
 </resources>
