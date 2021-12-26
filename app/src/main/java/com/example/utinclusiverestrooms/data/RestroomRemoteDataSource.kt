@@ -1,7 +1,8 @@
-package com.example.utinclusiverestrooms
+package com.example.utinclusiverestrooms.data
 
 import android.location.Geocoder
 import android.util.Log
+import com.example.utinclusiverestrooms.MainApplication
 import com.google.gson.Gson
 import com.google.gson.stream.JsonToken
 import kotlinx.coroutines.Dispatchers

@@ -1,0 +1,106 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "5bec41ffc69ade89be7d0760396f4d10",
+    "entities": [
+      {
+        "tableName": "Restroom",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`OBJECTID` INTEGER NOT NULL, `Name` TEXT NOT NULL, `Building_Abbr` TEXT NOT NULL, `Address_Full` TEXT NOT NULL, `Room_Number` TEXT NOT NULL, `Number_Of_Rooms` TEXT NOT NULL, `Bathroom_Type` TEXT NOT NULL, `Notes` TEXT NOT NULL, `Status` TEXT NOT NULL, `Photo_URL` TEXT NOT NULL, `distanceTo` REAL NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, PRIMARY KEY(`OBJECTID`))",
+        "fields": [
+          {
+            "fieldPath": "OBJECTID",
+            "columnName": "OBJECTID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Name",
+            "columnName": "Name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Building_Abbr",
+            "columnName": "Building_Abbr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Address_Full",
+            "columnName": "Address_Full",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Room_Number",
+            "columnName": "Room_Number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Number_Of_Rooms",
+            "columnName": "Number_Of_Rooms",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Bathroom_Type",
+            "columnName": "Bathroom_Type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Notes",
+            "columnName": "Notes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Status",
+            "columnName": "Status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Photo_URL",
+            "columnName": "Photo_URL",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "distanceTo",
+            "columnName": "distanceTo",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "OBJECTID"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5bec41ffc69ade89be7d0760396f4d10')"
+    ]
+  }
+}

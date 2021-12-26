@@ -1,4 +1,4 @@
-package com.example.utinclusiverestrooms
+package com.example.utinclusiverestrooms.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

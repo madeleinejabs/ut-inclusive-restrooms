@@ -1,6 +1,7 @@
-package com.example.utinclusiverestrooms
+package com.example.utinclusiverestrooms.data
 
 import androidx.room.Room
+import com.example.utinclusiverestrooms.MainApplication
 import javax.inject.Inject
 
 class RestroomLocalDataSource @Inject constructor() {

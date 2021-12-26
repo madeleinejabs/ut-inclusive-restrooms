@@ -1,11 +1,13 @@
-package com.example.utinclusiverestrooms
+package com.example.utinclusiverestrooms.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -13,6 +15,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.utinclusiverestrooms.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -26,9 +31,15 @@ class RestroomActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restroom)
+
+        val restroomAdapter = RestroomAdapter(viewModel.uiState.value)
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+        recyclerView.adapter = restroomAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -46,14 +57,12 @@ class RestroomActivity : AppCompatActivity() {
                 location: Location? ->
             if (location != null) {
                 lifecycleScope.launch {
-                    viewModel.updateUiState(location, 1)
+                    viewModel.updateUiState(location)
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
                         viewModel.uiState.collect {
-                            findViewById<TextView>(R.id.textView).apply {
-                                if (viewModel.uiState.value.isNotEmpty()) {
-                                    text = getString(R.string.restroom_info, viewModel.uiState.value[0].Name, viewModel.uiState.value[0].distanceTo)
-                                }
-                            }
+                            Log.d("RestroomActivity", "Setting data of restroomAdapter")
+                            restroomAdapter.setData(viewModel.uiState.value)
+                            restroomAdapter.notifyDataSetChanged()
                         }
                     }
                 }

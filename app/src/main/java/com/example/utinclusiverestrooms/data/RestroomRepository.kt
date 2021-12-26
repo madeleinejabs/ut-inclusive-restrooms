@@ -1,6 +1,7 @@
-package com.example.utinclusiverestrooms
+package com.example.utinclusiverestrooms.data
 
 import android.location.Location
+import java.util.*
 import javax.inject.Inject
 
 class RestroomRepository @Inject constructor(
@@ -32,10 +33,10 @@ class RestroomRepository @Inject constructor(
         sorted = true
     }
 
-    fun getRestroom(index: Int): Restroom? {
-        if (!sorted || restrooms.size <= index) {
+    fun getRestrooms(): List<Restroom>? {
+        if (!sorted) {
             return null
         }
-        return restrooms[index]
+        return Collections.unmodifiableList(restrooms)
     }
 }

@@ -15,11 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UTInclusiveRestrooms">
         <activity
-            android:name=".RestroomActivity"
+            android:name=".ui.RestroomActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

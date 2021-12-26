@@ -1,9 +1,10 @@
-package com.example.utinclusiverestrooms
+package com.example.utinclusiverestrooms.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.utinclusiverestrooms.R
 
 
 class MainActivity : AppCompatActivity() {
