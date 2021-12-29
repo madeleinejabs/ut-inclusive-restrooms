@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="theme_orange">#f8971f</color>
+    <color name="theme_orange">#bf5700</color>
     <color name="theme_blue_gray">#9cadb7</color>
-    <color name="theme_background">#f5f5f5</color>
+    <color name="theme_background">#333f48</color>
 </resources>

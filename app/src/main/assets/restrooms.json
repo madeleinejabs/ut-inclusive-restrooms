@@ -1157,29 +1157,6 @@
     },
     {
       "attributes": {
-        "OBJECTID": 46,
-        "Name": "Townes Hall",
-        "Building_Abbr": "TNH",
-        "Address_Full": "727 E Dean Keeton St",
-        "Room_Number": "2.136",
-        "Number_Of_Rooms": null,
-        "Bathroom_Type": null,
-        "Notes": "This is a multi-stall gender inclusive restroom. There is not a lock on the main restroom door, but there are locks on the individual stall doors.",
-        "Status": "Active",
-        "Photo_URL": "https://drive.google.com/drive/folders/0BwvSRgASC9a3LUxqU1ZKZVZkbXc?resourcekey=0-LTD6oZw6dCfYJDgS0MU3Xw&usp=sharing",
-        "GlobalID": "dbee74ae-dec5-4976-8b51-bbf9400f75da",
-        "created_user": "TRECS_PUB",
-        "created_date": 1627578986243,
-        "last_edited_user": "DDCE_Editor_01",
-        "last_edited_date": 1628290638805
-      },
-      "geometry": {
-        "x": 3117977.95699431,
-        "y": 10078253.344694316
-      }
-    },
-    {
-      "attributes": {
         "OBJECTID": 47,
         "Name": "Engineering Education and Research Center",
         "Building_Abbr": "EER",
@@ -1694,13 +1671,13 @@
         "Number_Of_Rooms": "1",
         "Bathroom_Type": "general",
         "Notes": null,
-        "Status": "Future",
-        "Photo_URL": null,
+        "Status": "Active",
+        "Photo_URL": "https://drive.google.com/drive/folders/1D7mqzlAHPnf1OgSxUwaaol5cd1UYY8TM?usp=sharing",
         "GlobalID": "8cd7d7d5-1f53-4a8c-b62a-4d5a2adfc0d3",
         "created_user": "DDCE_Editor_01",
         "created_date": 1629404397975,
         "last_edited_user": "DDCE_Editor_01",
-        "last_edited_date": 1629404480812
+        "last_edited_date": 1639606863135
       },
       "geometry": {
         "x": 3115916.6487514162,
@@ -1740,13 +1717,13 @@
         "Number_Of_Rooms": "1",
         "Bathroom_Type": "standard",
         "Notes": null,
-        "Status": "Future",
-        "Photo_URL": null,
+        "Status": "Active",
+        "Photo_URL": "https://drive.google.com/drive/folders/0BwvSRgASC9a3LUxqU1ZKZVZkbXc?resourcekey=0-LTD6oZw6dCfYJDgS0MU3Xw&usp=sharing",
         "GlobalID": "a234fb00-c018-4a30-8320-1df24362e6b0",
         "created_user": "DDCE_Editor_01",
         "created_date": 1629404817293,
         "last_edited_user": "DDCE_Editor_01",
-        "last_edited_date": 1629404859268
+        "last_edited_date": 1638993182737
       },
       "geometry": {
         "x": 3117797.181836545,
@@ -1782,17 +1759,17 @@
         "Name": "JESSE H. JONES COMM. CTR. (BLDG. B)",
         "Building_Abbr": "CMB",
         "Address_Full": "2504 B WHITIS AVE, AUSTIN, TX 78712",
-        "Room_Number": "1.128, 3.102F, 3.212",
-        "Number_Of_Rooms": "3",
+        "Room_Number": "1.128",
+        "Number_Of_Rooms": "1",
         "Bathroom_Type": "Standard",
-        "Notes": "(already a point for the other bathroom)",
-        "Status": "Future",
-        "Photo_URL": null,
+        "Notes": null,
+        "Status": "Active",
+        "Photo_URL": "https://drive.google.com/drive/folders/16AL1N-zthCxp84I2h0LedRsxVQKu5CNZ?usp=sharing",
         "GlobalID": "af2e8564-085f-44ce-b2f6-3c324b27deab",
         "created_user": "DDCE_Editor_01",
         "created_date": 1629405037159,
         "last_edited_user": "DDCE_Editor_01",
-        "last_edited_date": 1629405086856
+        "last_edited_date": 1639607400082
       },
       "geometry": {
         "x": 3114821.8622107506,
@@ -1809,13 +1786,13 @@
         "Number_Of_Rooms": "1",
         "Bathroom_Type": "standard",
         "Notes": null,
-        "Status": "Future",
-        "Photo_URL": null,
+        "Status": "Active",
+        "Photo_URL": "https://drive.google.com/drive/folders/15LGPQt8-21tvIz1pT4_grORgpuvV49Og?usp=sharing",
         "GlobalID": "ea6f8bc1-043f-45e9-a887-e2a43df5ee14",
         "created_user": "DDCE_Editor_01",
         "created_date": 1629405144257,
         "last_edited_user": "DDCE_Editor_01",
-        "last_edited_date": 1629405183050
+        "last_edited_date": 1638991962605
       },
       "geometry": {
         "x": 3116458.2964842264,
@@ -1832,13 +1809,13 @@
         "Number_Of_Rooms": "1",
         "Bathroom_Type": "standard",
         "Notes": null,
-        "Status": "Future",
-        "Photo_URL": null,
+        "Status": "Active",
+        "Photo_URL": "https://drive.google.com/drive/folders/1h9batXYG8UXPEbvgwEmJEKmlCT3-480z?usp=sharing",
         "GlobalID": "155acdb8-2b34-48d4-ac0b-cc94878529d3",
         "created_user": "DDCE_Editor_01",
         "created_date": 1629405276374,
         "last_edited_user": "DDCE_Editor_01",
-        "last_edited_date": 1629405306078
+        "last_edited_date": 1639607777844
       },
       "geometry": {
         "x": 3114638.2329998929,
@@ -1855,13 +1832,13 @@
         "Number_Of_Rooms": null,
         "Bathroom_Type": null,
         "Notes": null,
-        "Status": "Future",
-        "Photo_URL": null,
+        "Status": "Active",
+        "Photo_URL": "https://drive.google.com/drive/folders/1-Vjef71l2KY7j4cFkGklfPLidws5wW6m?usp=sharing",
         "GlobalID": "933cc475-9150-4337-b71c-d57f8cda433e",
         "created_user": "DDCE_Editor_01",
         "created_date": 1629405345455,
         "last_edited_user": "DDCE_Editor_01",
-        "last_edited_date": 1629405368387
+        "last_edited_date": 1638992821854
       },
       "geometry": {
         "x": 3117619.199651374,
@@ -1958,29 +1935,6 @@
       "geometry": {
         "x": 3115779.6729736803,
         "y": 10078484.012887646
-      }
-    },
-    {
-      "attributes": {
-        "OBJECTID": 93,
-        "Name": "SID RICHARDSON HALL",
-        "Building_Abbr": "SRH",
-        "Address_Full": "2300 RED RIVER ST, AUSTIN, TX 78712",
-        "Room_Number": "2.108",
-        "Number_Of_Rooms": "1",
-        "Bathroom_Type": null,
-        "Notes": null,
-        "Status": "Future",
-        "Photo_URL": null,
-        "GlobalID": "7cb31c74-e2dc-4158-8088-7ec58a476a0d",
-        "created_user": "DDCE_Editor_01",
-        "created_date": 1629405704499,
-        "last_edited_user": "DDCE_Editor_01",
-        "last_edited_date": 1629405733398
-      },
-      "geometry": {
-        "x": 3118516.0699680364,
-        "y": 10077251.485204782
       }
     },
     {

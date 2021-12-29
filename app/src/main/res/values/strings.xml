@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">UT Inclusive Restrooms</string>
-    <string name="find_restroom">Find me a Restroom</string>
     <string name="element_text">Missing Element</string>
     <string name="location_denied">This feature requires location permission.</string>
+    <string name="room_number">%1$s %2$s</string>
+    <string name="distance">%1$.1fm</string>
+
+    <string name="logo_cd">UT Inclusive Restrooms logo</string>
+    <string name="directions_button_cd">Open in Google Maps</string>
 </resources>

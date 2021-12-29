@@ -8,6 +8,9 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.View.INVISIBLE
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -17,6 +20,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.utinclusiverestrooms.MainApplication
 import com.example.utinclusiverestrooms.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
@@ -34,7 +38,13 @@ class RestroomActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.theme_orange)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.theme_orange)
         setContentView(R.layout.activity_restroom)
+
+        var isLoading = true
+        val imageView: ImageView = findViewById(R.id.imageView)
+        val loadingView: View = findViewById(R.id.loading_view)
 
         val restroomAdapter = RestroomAdapter(viewModel.uiState.value)
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
@@ -63,6 +73,13 @@ class RestroomActivity : AppCompatActivity() {
                             Log.d("RestroomActivity", "Setting data of restroomAdapter")
                             restroomAdapter.setData(viewModel.uiState.value)
                             restroomAdapter.notifyDataSetChanged()
+                            if (isLoading) {
+                                isLoading = false
+                                window.statusBarColor = ContextCompat.getColor(MainApplication.applicationContext(), R.color.theme_blue_gray)
+                                window.navigationBarColor = ContextCompat.getColor(MainApplication.applicationContext(), R.color.theme_blue_gray)
+                                imageView.visibility = INVISIBLE
+                                loadingView.visibility = INVISIBLE
+                            }
                         }
                     }
                 }
@@ -80,7 +97,7 @@ class RestroomActivity : AppCompatActivity() {
                 finish()
             }
             else {
-                findViewById<TextView>(R.id.textView).apply {
+                findViewById<TextView>(R.id.nameText).apply {
                     text = getString(R.string.location_denied)
                 }
             }

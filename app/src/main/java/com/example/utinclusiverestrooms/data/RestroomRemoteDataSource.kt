@@ -91,7 +91,9 @@ class RestroomRemoteDataSource @Inject constructor() {
                                             }
                                         }
                                     }
-                                    restrooms.add(restroom)
+                                    if (restroom.Status == "Active") {
+                                        restrooms.add(restroom)
+                                    }
                                     reader.endObject()
                                 } else {
                                     reader.skipValue()
@@ -109,8 +111,13 @@ class RestroomRemoteDataSource @Inject constructor() {
         val gc = Geocoder(MainApplication.applicationContext())
         if (Geocoder.isPresent()) {
             restrooms.forEach {
-                if (it.Address_Full != "") {
+                // Second condition handles incorrect main tower address
+                if (it.Address_Full != "" && it.Address_Full != "W 24th St, Austin, TX 78705") {
                     val restroomLocation = gc.getFromLocationName(it.Address_Full, 1)[0]
+                    it.latitude = restroomLocation.latitude
+                    it.longitude = restroomLocation.longitude
+                } else {
+                    val restroomLocation = gc.getFromLocationName(it.Name + " Austin, TX", 1)[0]
                     it.latitude = restroomLocation.latitude
                     it.longitude = restroomLocation.longitude
                 }

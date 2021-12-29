@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/list_item_horizontal_margin"
+    android:layout_marginRight="@dimen/list_item_horizontal_margin"
+    android:layout_marginTop="@dimen/list_item_vertical_margin"
+    android:gravity="center_vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/distanceText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/element_text"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/directionsLeftEdge"
+            app:layout_constraintTop_toBottomOf="@+id/directionsButton" />
+
+        <TextView
+            android:id="@+id/roomText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_item_vertical_margin"
+            android:text="@string/element_text"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/distanceText"
+            app:layout_constraintEnd_toStartOf="@+id/textRightEdge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameText"
+            app:layout_constraintVertical_bias="0.22000003" />
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/element_text"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/textRightEdge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/directionsButton"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:background="@null"
+            android:contentDescription="@string/directions_button_cd"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@+id/roomText"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/directionsLeftEdge"
+            app:layout_constraintTop_toTopOf="@+id/nameText"
+            app:srcCompat="@drawable/ic_marker" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/directionsLeftEdge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="280dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/textRightEdge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="260dp" />
+
+        <View
+            android:id="@+id/SeparatorLine"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/list_item_vertical_margin"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/distanceText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
