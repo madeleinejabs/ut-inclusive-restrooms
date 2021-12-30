@@ -19,7 +19,6 @@
             android:layout_marginTop="8dp"
             android:text="@string/element_text"
             android:textAlignment="center"
-            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/directionsLeftEdge"
             app:layout_constraintTop_toBottomOf="@+id/directionsButton" />
