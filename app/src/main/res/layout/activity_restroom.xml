@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:ignore="Overdraw"
     android:background="@color/theme_background"
-    tools:context=".ui.RestroomActivity">
+    tools:context="com.madisonwabs.utinclusiverestrooms.ui.RestroomActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
